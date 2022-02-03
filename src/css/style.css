@@ -1,0 +1,28 @@
+.g-main-layout {
+  grid-template-areas:
+    "connections chat chat chat chat"
+    "connections chat chat chat chat"
+    "connections chat chat chat chat"
+    "connections chat chat chat chat"
+    "connections chat chat chat chat"
+    "connection-id input input input input"
+    "invite-link input input input input";
+}
+
+.connections {
+  grid-area: connections;
+}
+.chat {
+  grid-area: chat;
+}
+.connection-id {
+  grid-area: connection-id;
+}
+
+.invite-link {
+  grid-area: invite-link;
+}
+
+.input {
+  grid-area: input;
+}
