@@ -1,3 +1,3 @@
+import "./sass/style.scss";
+import "bootstrap";
 import "./js/main.mjs";
-
-console.log("yoooo");
