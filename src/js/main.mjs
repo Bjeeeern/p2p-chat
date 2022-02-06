@@ -1,4 +1,4 @@
-import Chat from "./app/chat.mjs";
+import Chat from "./chat/chat.mjs";
 
 let chat = new Chat();
 
