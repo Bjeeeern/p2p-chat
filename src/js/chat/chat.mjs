@@ -12,7 +12,7 @@ export default class Chat extends EventEmitter {
   }
 
   sendMessage(text) {
-    this.emit(new Message(text));
+    this.emit("message", new Message(text));
   }
 }
 

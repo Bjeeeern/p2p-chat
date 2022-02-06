@@ -1,20 +1,20 @@
 import Chat from "./chat.mjs";
 import * as chai from "chai";
 
-const expect = chai.expect;
+const should = chai.should();
 
 describe("Chat", function () {
   it("generates a connection id", function () {
     const chat = new Chat();
 
-    expect(chat.id).is.not.undefined;
-    expect(typeof chat.id).to.be("string");
+    should.exist(chat.id);
+    chat.id.should.be.a("string");
   });
   describe("single chat instance", function () {
     it("can be used to send messages to self", function () {
       const chat = new Chat();
       const readMessages = [];
-      chat.onMessageReceived.push((m) => readMessages.push(m));
+      chat.on("message", (m) => readMessages.push(m.content));
 
       const testMessages = ["test", "test1", "test2"];
 
@@ -22,7 +22,7 @@ describe("Chat", function () {
         chat.sendMessage(testMessage);
       }
 
-      expect(readMessages.map((m) => m.content)).to.equal(testMessages);
+      readMessages.should.deep.equal(testMessages);
     });
   });
   describe("couple chat instance", function () {
@@ -32,18 +32,15 @@ describe("Chat", function () {
 
       const readChatAMessages = [];
       const readChatBMessages = [];
-      chatA.onMessageReceived.push((m) => readChatAMessages.push(m));
-      chatB.onMessageReceived.push((m) => readChatBMessages.push(m));
+      chatA.on("message", (m) => readChatAMessages.push(m.content));
+      chatB.on("message", (m) => readChatBMessages.push(m.content));
 
       chatA.sendMessage("test1");
       chatB.sendMessage("test2");
       chatA.sendMessage("test3");
 
-      readChatAMessages = readChatAMessages.map((m) => m.content);
-      readChatBMessages = readChatBMessages.map((m) => m.content);
-
-      expect(readChatAMessages).to.equal(["test1", "test2", "test3"]);
-      expect(readChatAMessages).to.equal(readChatBMessages);
+      readChatAMessages.should.deep.equal(["test1", "test2", "test3"]);
+      readChatAMessages.should.deep.equal(readChatBMessages);
     });
   });
 });
