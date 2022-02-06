@@ -1,4 +1,5 @@
 import { EventEmitter } from "events";
+import { format } from "date-fns";
 
 export default class Chat extends EventEmitter {
   constructor(options = { useEventLogging: true }) {
@@ -7,7 +8,9 @@ export default class Chat extends EventEmitter {
     this.id = crypto.randomUUID();
 
     if (options.useEventLogging) {
-      this.on("message", (m) => console.log(`${m.date}: ${m.content}`));
+      this.on("message", (m) =>
+        console.log(`${format(m.date, "dd/MM-yy")}: ${m.content}`)
+      );
     }
   }
 

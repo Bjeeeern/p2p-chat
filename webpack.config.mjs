@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
   mode: "development",
+  watch: true,
   devtool: "eval-source-map", // https://webpack.js.org/configuration/devtool/#devtool
   entry: {
     app: "./src/app.index.js",
